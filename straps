@@ -1,0 +1,279 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8">
+
+<head>
+    <style>
+        body {
+            background-color: #fff;
+            margin: 0px;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        #locatorViet {
+            --posY: 100px;
+            position: absolute;
+            left: 0px;
+            /* animation: locatorMove 8s; */
+            /* top: var(--posY); */
+            background-color: rgba(255, 255, 255, 0);
+            width: 100%;
+            height: 100%;
+            display: block;
+            overflow: hidden;
+            transform: translate3d(0, 0, 0);
+            text-align: center;
+            opacity: 1;
+        }
+        
+        @keyframes locatorMoveDown {
+            from {
+                top: 0px;
+            }
+            to {
+                top: var(--posY);
+            }
+        }
+        
+        @keyframes locatorMoveUp {
+            from {
+                top: var(--posY);
+            }
+            to {
+                top: 0px;
+            }
+        }
+        
+        #creditViet {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background-color: rgba(255, 255, 255, 0);
+            width: 100%;
+            height: 100%;
+            display: block;
+            overflow: hidden;
+            transform: translate3d(0, 0, 0);
+            text-align: center;
+            opacity: 1;
+        }
+        
+        #nameLowerRightViet {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background-color: rgba(255, 255, 255, 0);
+            width: 100%;
+            height: 100%;
+            display: block;
+            overflow: hidden;
+            transform: translate3d(0, 0, 0);
+            text-align: center;
+            opacity: 1;
+        }
+        
+        #narrativeLowerLeftViet {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background-color: rgba(255, 255, 255, 0);
+            width: 100%;
+            height: 100%;
+            display: block;
+            overflow: hidden;
+            transform: translate3d(0, 0, 0);
+            text-align: center;
+            opacity: 1;
+        }
+        
+        #userIntLowerCentViet {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background-color: rgba(255, 255, 255, 0);
+            width: 100%;
+            height: 100%;
+            display: block;
+            overflow: hidden;
+            transform: translate3d(0, 0, 0);
+            text-align: center;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.6.10/lottie.js" integrity="sha256-j5t8yIha0IKq9Oajlw+yBTISHC7DMh1AVIC3v1Ka6S8=" crossorigin="anonymous"></script>
+
+    <div id="locatorViet"></div>
+    <div id="creditViet"></div>
+    <div id="nameLowerRightViet"></div>
+    <div id="narativeLowerLeftViet"></div>
+    <div id="userIntLowerCentViet"></div>
+
+    <script>
+        //// LOCATOR ANIMATION
+        var paramsLocatorViet = {
+            container: document.getElementById('locatorViet'),
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            autoloadSegments: false,
+            prerender: false,
+            //animationData: animationData1
+            path: "https://gist.githubusercontent.com/kirillSkorodelov/9ec681c14f1769357d89ff66407c0d0b/raw/animationDataLocatorViet.json"
+        };
+        var locatorVietAnim;
+        locatorVietAnim = lottie.loadAnimation(paramsLocatorViet);
+
+        function locatorLeftTopWide(action, line1, line2, style) {
+            if (action == "on") {
+                locatorVietAnim.renderer.elements[0].elements[1].updateDocumentData({
+                    t: line1 //.toString() //.replace(/\n/g, '\r'),
+                }, 0);
+                locatorVietAnim.renderer.elements[0].elements[3].updateDocumentData({
+                    t: line2 //.toString() //.replace(/\n/g, '\r'),
+                }, 0);
+                locatorVietAnim.playSegments([0, 54], true);
+            }
+            if (action == "off") {
+                locatorVietAnim.playSegments([54, 66], true);
+            }
+
+        };
+        /////
+
+        /////CREDIT ANIMATION
+        var paramsCreditViet = {
+            container: document.getElementById('creditViet'),
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            autoloadSegments: false,
+            prerender: false,
+            //animationData: animationData1
+            path: "https://gist.githubusercontent.com/kirillSkorodelov/9ec681c14f1769357d89ff66407c0d0b/raw/animationDataCreditViet.json"
+        };
+        var creditVietAnim;
+        creditVietAnim = lottie.loadAnimation(paramsCreditViet);
+
+        function creditLeftTopWide(action, line1, style) {
+            if (action == "on") {
+                //document.getElementById('locatorViet').style.setProperty('--posY', '100px');
+                document.getElementById('locatorViet').style.setProperty('animation', 'locatorMoveDown 0.7s');
+                document.getElementById('locatorViet').style.setProperty("animation-fill-mode", "forwards");
+                creditVietAnim.renderer.elements[0].elements[1].updateDocumentData({
+                    t: line1 //.toString() //.replace(/\n/g, '\r'),
+                }, 0);
+                creditVietAnim.playSegments([0, 30], true);
+            }
+            if (action == "off") {
+                document.getElementById('locatorViet').style.setProperty('animation', 'locatorMoveUp 0.7s');
+                document.getElementById('locatorViet').style.setProperty('animation-delay', '0.5s')
+                document.getElementById('locatorViet').style.setProperty("animation-fill-mode", "both");
+                creditVietAnim.playSegments([75, 93], true);
+            }
+        };
+        /////
+
+        /////NameLowerRight animation
+        var paramsNameLowerRightViet = {
+            container: document.getElementById('nameLowerRightViet'),
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            autoloadSegments: false,
+            prerender: false,
+            //animationData: animationData1
+            path: "https://gist.githubusercontent.com/kirillSkorodelov/9ec681c14f1769357d89ff66407c0d0b/raw/animationDataNameLowerRightViet.json"
+        };
+        var nameLowerRightVietAnim;
+        nameLowerRightVietAnim = lottie.loadAnimation(paramsNameLowerRightViet);
+
+        function nameLowerRightWide(action, line1, line2, style) {
+            if (action == "on") {
+                nameLowerRightVietAnim.renderer.elements[0].elements[2].updateDocumentData({
+                    t: line1 //.toString() //.replace(/\n/g, '\r'),
+                }, 0);
+                nameLowerRightVietAnim.renderer.elements[0].elements[4].updateDocumentData({
+                    t: line2 //.toString() //.replace(/\n/g, '\r'),
+                }, 0);
+                nameLowerRightVietAnim.playSegments([0, 30], true);
+            }
+            if (action == "off") {
+                nameLowerRightVietAnim.playSegments([33, 59], true);
+            }
+        };
+        /////
+
+        /////NARRATIVE ANIMATION
+        var paramsNarrativeLowerLeftViet = {
+            container: document.getElementById('narativeLowerLeftViet'),
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            autoloadSegments: false,
+            prerender: false,
+            //animationData: animationData1
+            path: "https://gist.githubusercontent.com/kirillSkorodelov/9ec681c14f1769357d89ff66407c0d0b/raw/animationDataNarrativeLowerLeft.json"
+        };
+        var narrativeLowerLeftVietAnim;
+        narrativeLowerLeftVietAnim = lottie.loadAnimation(paramsNarrativeLowerLeftViet);
+
+        function narrativeLowerLeftWide(action, line1, line2, style) {
+            if (action == "on") {
+                narrativeLowerLeftVietAnim.renderer.elements[0].elements[1].updateDocumentData({
+                    t: line1 //.toString() //.replace(/\n/g, '\r'),
+                }, 0);
+                narrativeLowerLeftVietAnim.renderer.elements[0].elements[3].updateDocumentData({
+                    t: line2 //.toString() //.replace(/\n/g, '\r'),
+                }, 0);
+                narrativeLowerLeftVietAnim.playSegments([0, 40], true);
+            }
+            if (action == "off") {
+                narrativeLowerLeftVietAnim.playSegments([75, 98], true);
+            }
+        };
+        /////
+
+        /////USER INTERACTION ANIMATION
+        var paramsUserIntLowerCentViet = {
+            container: document.getElementById('userIntLowerCentViet'),
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            autoloadSegments: false,
+            prerender: false,
+            //animationData: animationData1
+            path: "https://gist.githubusercontent.com/kirillSkorodelov/9ec681c14f1769357d89ff66407c0d0b/raw/animationDataUserIntLowerCent.json"
+        };
+        var userIntLoweCentVietAnim;
+        userIntLoweCentVietAnim = lottie.loadAnimation(paramsUserIntLowerCentViet);
+
+        function userIntLowerCentWide(action, questionTag, name, line1, line2, style) {
+            if (action == "on") {
+                userIntLoweCentVietAnim.renderer.elements[0].elements[6].updateDocumentData({
+                    t: questionTag //.toString() //.replace(/\n/g, '\r'),
+                }, 0);
+                userIntLoweCentVietAnim.renderer.elements[0].elements[2].updateDocumentData({
+                    t: name //.toString() //.replace(/\n/g, '\r'),
+                }, 0);
+                userIntLoweCentVietAnim.renderer.elements[0].elements[8].updateDocumentData({
+                    t: line1 //.toString() //.replace(/\n/g, '\r'),
+                }, 0);
+                userIntLoweCentVietAnim.renderer.elements[0].elements[10].updateDocumentData({
+                    t: line2 //.toString() //.replace(/\n/g, '\r'),
+                }, 0);
+
+
+                userIntLoweCentVietAnim.playSegments([0, 45], true);
+            }
+            if (action == "off") {
+                userIntLoweCentVietAnim.playSegments([80, 108], true);
+            }
+        };
+    </script>
+</body>
+
+</html>
